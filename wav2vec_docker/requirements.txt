@@ -1,0 +1,7 @@
+librosa
+matplotlib
+numpy
+soundfile
+torch
+transformers
+umap-learn

@@ -1,0 +1,27 @@
+{
+  "name": "research_2026",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "runArgs": [
+    "--gpus",
+    "all",
+    "--shm-size=8g"
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/research_2026,type=bind,consistency=cached",
+  "containerEnv": {
+    "MPLCONFIGDIR": "/tmp/matplotlib"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  },
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace/research_2026"
+}

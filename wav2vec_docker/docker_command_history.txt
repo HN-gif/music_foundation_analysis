@@ -1,0 +1,502 @@
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ # 古いバージョンを削除（念のため(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ # 古いバージョンを削除（念のため）do apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get remove docker docker-engine docker.io containerd runc
+# 必要なパッケージをインストール
+# 必要なパッケージをインストール
+sudo apt-get updatel ca-certificates curl gnupg
+sudo apt-get install ca-certificates curl gnupg
+# Docker公式のGPG鍵を追加
+# Docker公式のGPG鍵を追加etc/apt/keyrings
+sudo install -m 0755 -d /etc/apt/keyringsnux/ubuntu/gpg | sudo gpg --dearmor -o curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpgings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+# リポジトリをセットアップ
+# リポジトリをセットアップ
+echo \ [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.g  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \AME")" stable" | \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+# インストール！
+# インストール！ate
+sudo apt-get updatel docker-ce docker-ce-cli containerd.io docker-buildx-plugin sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+[sudo] takamichi-lab-pc07 のパスワード: 
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 完了        
+状態情報を読み取っています... 完了        
+パッケージ 'docker' はインストールされていないため削除もされません
+パッケージ 'docker-engine' はインストールされていないため削除もされません
+パッケージ 'docker.io' はインストールされていないため削除もされません
+パッケージ 'containerd' はインストールされていないため削除もされません
+パッケージ 'runc' はインストールされていないため削除もされません
+以下のパッケージが自動でインストールされましたが、もう必要とされていません:
+  libgl1-amber-dri libglapi-amber libllvm19 libnvidia-cfg1-550
+  libnvidia-common-550 libnvidia-compute-550 libnvidia-compute-550:i386
+  libnvidia-decode-550 libnvidia-decode-550:i386 libnvidia-encode-550
+  libnvidia-encode-550:i386 libnvidia-extra-550 libnvidia-fbc1-550
+  libnvidia-fbc1-550:i386 libnvidia-gl-550 libnvidia-gl-550:i386
+  nvidia-compute-utils-550 nvidia-dkms-550 nvidia-firmware-550-550.120
+  nvidia-firmware-550-550.144.03 nvidia-firmware-550-550.163.01
+  nvidia-utils-550 xserver-xorg-video-nvidia-550
+これを削除するには 'sudo apt autoremove' を利用してください。
+アップグレード: 0 個、新規インストール: 0 個、削除: 0 個、保留: 0 個。
+ヒット:1 https://download.docker.com/linux/ubuntu noble InRelease
+取得:2 https://dl.google.com/linux/chrome-stable/deb stable InRelease [1,825 B]
+取得:3 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1,210 B]
+取得:4 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]     
+ヒット:5 http://archive.ubuntu.com/ubuntu noble InRelease                      
+取得:6 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]       
+ヒット:7 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu noble InRelease
+取得:8 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
+取得:9 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+取得:10 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+取得:11 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [74.2 kB]
+取得:12 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [212 B]
+取得:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [177 kB]
+取得:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+取得:15 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [386 kB]
+取得:16 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+取得:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7,400 B]
+取得:18 http://archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+取得:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [13.1 kB]
+取得:20 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+1,063 kB を 3秒 で取得しました (370 kB/s)                                    
+パッケージリストを読み込んでいます... 完了
+N: リポジトリ 'https://dl.google.com/linux/chrome-stable/deb stable InRelease' がアーキテクチャ 'i386' をサポートしないため設定ファイル 'main/binary-i386/Packages' の取得をスキップ
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 完了        
+状態情報を読み取っています... 完了        
+ca-certificates はすでに最新バージョン (20240203) です。
+curl はすでに最新バージョン (8.5.0-2ubuntu10.8) です。
+gnupg はすでに最新バージョン (2.4.4-2ubuntu17.4) です。
+以下のパッケージが自動でインストールされましたが、もう必要とされていません:
+  libgl1-amber-dri libglapi-amber libllvm19 libnvidia-cfg1-550
+  libnvidia-common-550 libnvidia-compute-550 libnvidia-compute-550:i386
+  libnvidia-decode-550 libnvidia-decode-550:i386 libnvidia-encode-550
+  libnvidia-encode-550:i386 libnvidia-extra-550 libnvidia-fbc1-550
+  libnvidia-fbc1-550:i386 libnvidia-gl-550 libnvidia-gl-550:i386
+  nvidia-compute-utils-550 nvidia-dkms-550 nvidia-firmware-550-550.120
+  nvidia-firmware-550-550.144.03 nvidia-firmware-550-550.163.01
+  nvidia-utils-550 xserver-xorg-video-nvidia-550
+これを削除するには 'sudo apt autoremove' を利用してください。
+アップグレード: 0 個、新規インストール: 0 個、削除: 0 個、保留: 0 個。
+ファイル'/etc/apt/keyrings/docker.gpg'は既に存在します。 上書きしますか? (y/N) y
+ヒット:1 https://download.docker.com/linux/ubuntu noble InRelease
+ヒット:2 https://dl.google.com/linux/chrome-stable/deb stable InRelease        
+ヒット:3 http://archive.ubuntu.com/ubuntu noble InRelease                      
+ヒット:4 http://security.ubuntu.com/ubuntu noble-security InRelease            
+ヒット:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+ヒット:6 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu noble InRelease
+ヒット:7 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+パッケージリストを読み込んでいます... 完了
+N: リポジトリ 'https://dl.google.com/linux/chrome-stable/deb stable InRelease' がアーキテクチャ 'i386' をサポートしないため設定ファイル 'main/binary-i386/Packages' の取得をスキップ
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 完了        
+状態情報を読み取っています... 完了        
+docker-ce-cli はすでに最新バージョン (5:29.4.0-1~ubuntu.24.04~noble) です。
+docker-ce-cli は手動でインストールしたと設定されました。
+docker-buildx-plugin はすでに最新バージョン (0.33.0-1~ubuntu.24.04~noble) です。
+docker-buildx-plugin は手動でインストールしたと設定されました。
+docker-compose-plugin はすでに最新バージョン (5.1.2-1~ubuntu.24.04~noble) です。
+docker-compose-plugin は手動でインストールしたと設定されました。
+以下のパッケージが自動でインストールされましたが、もう必要とされていません:
+  libgl1-amber-dri libglapi-amber libllvm19 libnvidia-cfg1-550
+  libnvidia-common-550 libnvidia-compute-550 libnvidia-compute-550:i386
+  libnvidia-decode-550 libnvidia-decode-550:i386 libnvidia-encode-550
+  libnvidia-encode-550:i386 libnvidia-extra-550 libnvidia-fbc1-550
+  libnvidia-fbc1-550:i386 libnvidia-gl-550 libnvidia-gl-550:i386
+  nvidia-compute-utils-550 nvidia-dkms-550 nvidia-firmware-550-550.120
+  nvidia-firmware-550-550.144.03 nvidia-firmware-550-550.163.01
+  nvidia-utils-550 xserver-xorg-video-nvidia-550
+これを削除するには 'sudo apt autoremove' を利用してください。
+提案パッケージ:
+  cgroupfs-mount | cgroup-lite
+以下のパッケージが新たにインストールされます:
+  containerd.io docker-ce docker-ce-rootless-extras pigz slirp4netns
+アップグレード: 0 個、新規インストール: 5 個、削除: 0 個、保留: 0 個。
+52.9 MB のアーカイブを取得する必要があります。
+この操作後に追加で 215 MB のディスク容量が消費されます。
+取得:1 https://download.docker.com/linux/ubuntu noble/stable amd64 containerd.io amd64 2.2.2-1~ubuntu.24.04~noble [23.6 MB]
+取得:2 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce amd64 5:29.4.0-1~ubuntu.24.04~noble [22.7 MB]
+取得:3 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce-rootless-extras amd64 5:29.4.0-1~ubuntu.24.04~noble [6,557 kB]
+取得:4 http://archive.ubuntu.com/ubuntu noble/universe amd64 pigz amd64 2.8-1 [65.6 kB]
+取得:5 http://archive.ubuntu.com/ubuntu noble/universe amd64 slirp4netns amd64 1.2.1-1build2 [34.9 kB]
+52.9 MB を 2秒 で取得しました (32.6 MB/s)
+以前に未選択のパッケージ containerd.io を選択しています。
+(データベースを読み込んでいます ... 現在 285715 個のファイルとディレクトリがインストールされています。)
+.../containerd.io_2.2.2-1~ubuntu.24.04~noble_amd64.deb を展開する準備をしています ...
+containerd.io (2.2.2-1~ubuntu.24.04~noble) を展開しています...
+以前に未選択のパッケージ docker-ce を選択しています。
+.../docker-ce_5%3a29.4.0-1~ubuntu.24.04~noble_amd64.deb を展開する準備をしています ...
+docker-ce (5:29.4.0-1~ubuntu.24.04~noble) を展開しています...
+以前に未選択のパッケージ pigz を選択しています。
+.../archives/pigz_2.8-1_amd64.deb を展開する準備をしています ...
+pigz (2.8-1) を展開しています...
+以前に未選択のパッケージ docker-ce-rootless-extras を選択しています。
+.../docker-ce-rootless-extras_5%3a29.4.0-1~ubuntu.24.04~noble_amd64.deb を展開する準備をしています ...
+docker-ce-rootless-extras (5:29.4.0-1~ubuntu.24.04~noble) を展開しています...
+以前に未選択のパッケージ slirp4netns を選択しています。
+.../slirp4netns_1.2.1-1build2_amd64.deb を展開する準備をしています ...
+slirp4netns (1.2.1-1build2) を展開しています...
+slirp4netns (1.2.1-1build2) を設定しています ...
+containerd.io (2.2.2-1~ubuntu.24.04~noble) を設定しています ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /usr/lib/systemd/system/containerd.service.
+pigz (2.8-1) を設定しています ...
+docker-ce-rootless-extras (5:29.4.0-1~ubuntu.24.04~noble) を設定しています ...
+docker-ce (5:29.4.0-1~ubuntu.24.04~noble) を設定しています ...
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /usr/lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /usr/lib/systemd/system/docker.socket.
+man-db (2.12.0-4build2) のトリガを処理しています ...
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ # リポジトリの設定
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+# インストール
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+
+# Dockerを再起動して設定を反映
+sudo nvidia-ctk runtime configure --launcher=docker
+sudo systemctl restart docker
+deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://nvidia.github.io/libnvidia-container/stable/deb/$(ARCH) /
+#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://nvidia.github.io/libnvidia-container/experimental/deb/$(ARCH) /
+取得:1 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  InRelease [1,477 B]
+ヒット:2 https://download.docker.com/linux/ubuntu noble InRelease              
+取得:3 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  Packages [25.2 kB]
+ヒット:4 https://dl.google.com/linux/chrome-stable/deb stable InRelease        
+ヒット:5 http://security.ubuntu.com/ubuntu noble-security InRelease            
+ヒット:6 http://archive.ubuntu.com/ubuntu noble InRelease                      
+ヒット:7 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+ヒット:8 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu noble InRelease
+ヒット:9 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+26.7 kB を 1秒 で取得しました (23.2 kB/s)
+パッケージリストを読み込んでいます... 完了
+N: リポジトリ 'https://dl.google.com/linux/chrome-stable/deb stable InRelease' がアーキテクチャ 'i386' をサポートしないため設定ファイル 'main/binary-i386/Packages' の取得をスキップ
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 完了        
+状態情報を読み取っています... 完了        
+以下のパッケージが自動でインストールされましたが、もう必要とされていません:
+  libgl1-amber-dri libglapi-amber libllvm19 libnvidia-cfg1-550
+  libnvidia-common-550 libnvidia-compute-550 libnvidia-compute-550:i386
+  libnvidia-decode-550 libnvidia-decode-550:i386 libnvidia-encode-550
+  libnvidia-encode-550:i386 libnvidia-extra-550 libnvidia-fbc1-550
+  libnvidia-fbc1-550:i386 libnvidia-gl-550 libnvidia-gl-550:i386
+  nvidia-compute-utils-550 nvidia-dkms-550 nvidia-firmware-550-550.120
+  nvidia-firmware-550-550.144.03 nvidia-firmware-550-550.163.01
+  nvidia-utils-550 xserver-xorg-video-nvidia-550
+これを削除するには 'sudo apt autoremove' を利用してください。
+以下の追加パッケージがインストールされます:
+  libnvidia-container-tools libnvidia-container1 nvidia-container-toolkit-base
+以下のパッケージが新たにインストールされます:
+  libnvidia-container-tools libnvidia-container1 nvidia-container-toolkit
+  nvidia-container-toolkit-base
+アップグレード: 0 個、新規インストール: 4 個、削除: 0 個、保留: 0 個。
+8,121 kB のアーカイブを取得する必要があります。
+この操作後に追加で 35.1 MB のディスク容量が消費されます。
+取得:1 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  libnvidia-container1 1.19.0-1 [1,191 kB]
+取得:2 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  libnvidia-container-tools 1.19.0-1 [20.8 kB]
+取得:3 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  nvidia-container-toolkit-base 1.19.0-1 [5,576 kB]
+取得:4 https://nvidia.github.io/libnvidia-container/stable/deb/amd64  nvidia-container-toolkit 1.19.0-1 [1,333 kB]
+8,121 kB を 0秒 で取得しました (58.2 MB/s)           
+以前に未選択のパッケージ libnvidia-container1:amd64 を選択しています。
+(データベースを読み込んでいます ... 現在 285762 個のファイルとディレクトリがインストールされています。)
+.../libnvidia-container1_1.19.0-1_amd64.deb を展開する準備をしています ...
+libnvidia-container1:amd64 (1.19.0-1) を展開しています...
+以前に未選択のパッケージ libnvidia-container-tools を選択しています。
+.../libnvidia-container-tools_1.19.0-1_amd64.deb を展開する準備をしています ...
+libnvidia-container-tools (1.19.0-1) を展開しています...
+以前に未選択のパッケージ nvidia-container-toolkit-base を選択しています。
+.../nvidia-container-toolkit-base_1.19.0-1_amd64.deb を展開する準備をしています ...
+nvidia-container-toolkit-base (1.19.0-1) を展開しています...
+以前に未選択のパッケージ nvidia-container-toolkit を選択しています。
+.../nvidia-container-toolkit_1.19.0-1_amd64.deb を展開する準備をしています ...
+nvidia-container-toolkit (1.19.0-1) を展開しています...
+nvidia-container-toolkit-base (1.19.0-1) を設定しています ...
+Created symlink /etc/systemd/system/multi-user.target.wants/nvidia-cdi-refresh.path → /etc/systemd/system/nvidia-cdi-refresh.path.
+Created symlink /etc/systemd/system/multi-user.target.wants/nvidia-cdi-refresh.service → /etc/systemd/system/nvidia-cdi-refresh.service.
+Regenerating NVIDIA CDI specification...
+libnvidia-container1:amd64 (1.19.0-1) を設定しています ...
+libnvidia-container-tools (1.19.0-1) を設定しています ...
+nvidia-container-toolkit (1.19.0-1) を設定しています ...
+libc-bin (2.39-0ubuntu8.7) のトリガを処理しています ...
+Incorrect Usage: flag provided but not defined: -launcher
+
+ERRO[0000] flag provided but not defined: -launcher     
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ # --launcher ではなく --runtime を使います！
+sudo nvidia-ctk runtime configure --runtime=docker
+
+# 設定を反映させるためにDockerを再起動
+sudo systemctl restart docker
+INFO[0000] Config file does not exist; using empty config 
+INFO[0000] Wrote updated config to /etc/docker/daemon.json 
+INFO[0000] It is recommended that docker daemon be restarted. 
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ docker run --rm --gpus all nvidia/cuda:12.0-base-ubuntu22.04 nvidia-smi
+permission denied while trying to connect to the docker API at unix:///var/run/docker.sock
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ sudo groupadd docker
+groupadd: グループ 'docker' は既に存在します
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ sudo usermod -aG docker $USER
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ newgrp docker
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ docker run --rm --gpus all nvidia/cuda:12.0-base-ubuntu22.04 nvidia-smi
+Unable to find image 'nvidia/cuda:12.0-base-ubuntu22.04' locally
+docker: Error response from daemon: failed to resolve reference "docker.io/nvidia/cuda:12.0-base-ubuntu22.04": docker.io/nvidia/cuda:12.0-base-ubuntu22.04: not found
+
+Run 'docker run --help' for more information
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ docker run --rm --gpus all nvidia/cuda:12.6.0-base-ubuntu24.04 nvidia-smi
+Unable to find image 'nvidia/cuda:12.6.0-base-ubuntu24.04' locally
+12.6.0-base-ubuntu24.04: Pulling from nvidia/cuda
+9c704ecd0c69: Pull complete 
+92b961855a52: Pull complete 
+d339273dfb7f: Pull complete 
+67b3546b211d: Pull complete 
+d62ed77429b7: Pull complete 
+Digest: sha256:21f26c94dddeb8f594b3f66a7f7baec8870ac009220ea18d9570a846326b9702
+Status: Downloaded newer image for nvidia/cuda:12.6.0-base-ubuntu24.04
+Mon Apr 13 12:03:04 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.09             Driver Version: 580.126.09     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4080 ...    Off |   00000000:01:00.0  On |                  N/A |
+|  0%   40C    P8              7W /  320W |     350MiB /  16376MiB |      1%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+(base) takamichi-lab-pc07@takamichi-lab-pc07:~$ docker run --gpus all -it --rm -v $(pwd):/workspace pytorch/pytorch:2.2.1-cuda12.1-cudnn8-devel bash
+Unable to find image 'pytorch/pytorch:2.2.1-cuda12.1-cudnn8-devel' locally
+2.2.1-cuda12.1-cudnn8-devel: Pulling from pytorch/pytorch
+b4ee33f8fe02: Pull complete 
+43f89b94cd7d: Pull complete 
+dd4939a04761: Pull complete 
+b0d7cc89b769: Pull complete 
+1532d9024b9c: Pull complete 
+4d37a6bba88f: Pull complete 
+22ba0fb08ae2: Pull complete 
+20ed6599892b: Pull complete 
+a14a8a8a6ebc: Pull complete 
+7d61afc7a3ac: Pull complete 
+867a650a8224: Pull complete 
+04fc8a31fa53: Pull complete 
+4f4fb700ef54: Pull complete 
+8bd2762ffdd9: Pull complete 
+4bc954eb910a: Pull complete 
+2a5ee6fadd42: Pull complete 
+Digest: sha256:42204bca460bb77cbd524577618e1723ad474e5d77cc51f94037fffbc2c88c6f
+Status: Downloaded newer image for pytorch/pytorch:2.2.1-cuda12.1-cudnn8-devel
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.1.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+root@ae4a11c251db:/workspace# pip install transformers librosa umap-learn matplotlib seaborn
+Collecting transformers
+  Downloading transformers-5.5.3-py3-none-any.whl.metadata (32 kB)
+Collecting librosa
+  Downloading librosa-0.11.0-py3-none-any.whl.metadata (8.7 kB)
+Collecting umap-learn
+  Downloading umap_learn-0.5.12-py3-none-any.whl.metadata (24 kB)
+Collecting matplotlib
+  Downloading matplotlib-3.10.8-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (52 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 52.8/52.8 kB 8.5 MB/s eta 0:00:00
+Collecting seaborn
+  Downloading seaborn-0.13.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting huggingface-hub<2.0,>=1.5.0 (from transformers)
+  Downloading huggingface_hub-1.10.1-py3-none-any.whl.metadata (14 kB)
+Requirement already satisfied: numpy>=1.17 in /opt/conda/lib/python3.10/site-packages (from transformers) (1.26.3)
+Requirement already satisfied: packaging>=20.0 in /opt/conda/lib/python3.10/site-packages (from transformers) (23.1)
+Requirement already satisfied: pyyaml>=5.1 in /opt/conda/lib/python3.10/site-packages (from transformers) (6.0.1)
+Collecting regex>=2025.10.22 (from transformers)
+  Downloading regex-2026.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.4/40.4 kB 4.8 MB/s eta 0:00:00
+Collecting tokenizers<=0.23.0,>=0.22.0 (from transformers)
+  Downloading tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+Collecting typer (from transformers)
+  Downloading typer-0.24.1-py3-none-any.whl.metadata (16 kB)
+Collecting safetensors>=0.4.3 (from transformers)
+  Downloading safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Requirement already satisfied: tqdm>=4.27 in /opt/conda/lib/python3.10/site-packages (from transformers) (4.65.0)
+Collecting audioread>=2.1.9 (from librosa)
+  Downloading audioread-3.1.0-py3-none-any.whl.metadata (9.0 kB)
+Collecting numba>=0.51.0 (from librosa)
+  Downloading numba-0.65.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.9 kB)
+Collecting scipy>=1.6.0 (from librosa)
+  Downloading scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.0/62.0 kB 11.6 MB/s eta 0:00:00
+Collecting scikit-learn>=1.1.0 (from librosa)
+  Downloading scikit_learn-1.7.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
+Collecting joblib>=1.0 (from librosa)
+  Downloading joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+Requirement already satisfied: decorator>=4.3.0 in /opt/conda/lib/python3.10/site-packages (from librosa) (5.1.1)
+Collecting soundfile>=0.12.1 (from librosa)
+  Downloading soundfile-0.13.1-py2.py3-none-manylinux_2_28_x86_64.whl.metadata (16 kB)
+Collecting pooch>=1.1 (from librosa)
+  Downloading pooch-1.9.0-py3-none-any.whl.metadata (10 kB)
+Collecting soxr>=0.3.2 (from librosa)
+  Downloading soxr-1.0.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.6 kB)
+Requirement already satisfied: typing_extensions>=4.1.1 in /opt/conda/lib/python3.10/site-packages (from librosa) (4.9.0)
+Collecting lazy_loader>=0.1 (from librosa)
+  Downloading lazy_loader-0.5-py3-none-any.whl.metadata (5.9 kB)
+Collecting msgpack>=1.0 (from librosa)
+  Downloading msgpack-1.1.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.1 kB)
+Collecting pynndescent>=0.5 (from umap-learn)
+  Downloading pynndescent-0.6.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting contourpy>=1.0.1 (from matplotlib)
+  Downloading contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.5 kB)
+Collecting cycler>=0.10 (from matplotlib)
+  Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools>=4.22.0 (from matplotlib)
+  Downloading fonttools-4.62.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (117 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.5/117.5 kB 18.1 MB/s eta 0:00:00
+Collecting kiwisolver>=1.3.1 (from matplotlib)
+  Downloading kiwisolver-1.5.0-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (5.1 kB)
+Requirement already satisfied: pillow>=8 in /opt/conda/lib/python3.10/site-packages (from matplotlib) (10.2.0)
+Collecting pyparsing>=3 (from matplotlib)
+  Downloading pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+Collecting python-dateutil>=2.7 (from matplotlib)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pandas>=1.2 (from seaborn)
+  Downloading pandas-2.3.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.2/91.2 kB 16.5 MB/s eta 0:00:00
+Requirement already satisfied: filelock>=3.10.0 in /opt/conda/lib/python3.10/site-packages (from huggingface-hub<2.0,>=1.5.0->transformers) (3.13.1)
+Requirement already satisfied: fsspec>=2023.5.0 in /opt/conda/lib/python3.10/site-packages (from huggingface-hub<2.0,>=1.5.0->transformers) (2024.2.0)
+Collecting hf-xet<2.0.0,>=1.4.3 (from huggingface-hub<2.0,>=1.5.0->transformers)
+  Downloading hf_xet-1.4.3-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting httpx<1,>=0.23.0 (from huggingface-hub<2.0,>=1.5.0->transformers)
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting llvmlite<0.48,>=0.47.0dev0 (from numba>=0.51.0->librosa)
+  Downloading llvmlite-0.47.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.0 kB)
+Requirement already satisfied: pytz>=2020.1 in /opt/conda/lib/python3.10/site-packages (from pandas>=1.2->seaborn) (2023.3.post1)
+Collecting tzdata>=2022.7 (from pandas>=1.2->seaborn)
+  Downloading tzdata-2026.1-py2.py3-none-any.whl.metadata (1.4 kB)
+Requirement already satisfied: platformdirs>=2.5.0 in /opt/conda/lib/python3.10/site-packages (from pooch>=1.1->librosa) (3.10.0)
+Requirement already satisfied: requests>=2.19.0 in /opt/conda/lib/python3.10/site-packages (from pooch>=1.1->librosa) (2.31.0)
+Requirement already satisfied: six>=1.5 in /opt/conda/lib/python3.10/site-packages (from python-dateutil>=2.7->matplotlib) (1.16.0)
+Collecting threadpoolctl>=3.1.0 (from scikit-learn>=1.1.0->librosa)
+  Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: cffi>=1.0 in /opt/conda/lib/python3.10/site-packages (from soundfile>=0.12.1->librosa) (1.16.0)
+Collecting click>=8.2.1 (from typer->transformers)
+  Downloading click-8.3.2-py3-none-any.whl.metadata (2.6 kB)
+Collecting shellingham>=1.3.0 (from typer->transformers)
+  Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting rich>=12.3.0 (from typer->transformers)
+  Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting annotated-doc>=0.0.2 (from typer->transformers)
+  Downloading annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+Requirement already satisfied: pycparser in /opt/conda/lib/python3.10/site-packages (from cffi>=1.0->soundfile>=0.12.1->librosa) (2.21)
+Collecting anyio (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers)
+  Downloading anyio-4.13.0-py3-none-any.whl.metadata (4.5 kB)
+Requirement already satisfied: certifi in /opt/conda/lib/python3.10/site-packages (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers) (2024.2.2)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers)
+  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: idna in /opt/conda/lib/python3.10/site-packages (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers) (3.4)
+Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers)
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Requirement already satisfied: charset-normalizer<4,>=2 in /opt/conda/lib/python3.10/site-packages (from requests>=2.19.0->pooch>=1.1->librosa) (2.0.4)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /opt/conda/lib/python3.10/site-packages (from requests>=2.19.0->pooch>=1.1->librosa) (2.1.0)
+Collecting markdown-it-py>=2.2.0 (from rich>=12.3.0->typer->transformers)
+  Downloading markdown_it_py-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/conda/lib/python3.10/site-packages (from rich>=12.3.0->typer->transformers) (2.15.1)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=12.3.0->typer->transformers)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Requirement already satisfied: exceptiongroup>=1.0.2 in /opt/conda/lib/python3.10/site-packages (from anyio->httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers) (1.2.0)
+Downloading transformers-5.5.3-py3-none-any.whl (10.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 89.5 MB/s eta 0:00:00
+Downloading librosa-0.11.0-py3-none-any.whl (260 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 260.7/260.7 kB 39.1 MB/s eta 0:00:00
+Downloading umap_learn-0.5.12-py3-none-any.whl (91 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.8/91.8 kB 15.5 MB/s eta 0:00:00
+Downloading matplotlib-3.10.8-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.7/8.7 MB 90.6 MB/s eta 0:00:00
+Downloading seaborn-0.13.2-py3-none-any.whl (294 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 294.9/294.9 kB 48.8 MB/s eta 0:00:00
+Downloading audioread-3.1.0-py3-none-any.whl (23 kB)
+Downloading contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (325 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 325.0/325.0 kB 41.7 MB/s eta 0:00:00
+Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading fonttools-4.62.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 90.6 MB/s eta 0:00:00
+Downloading huggingface_hub-1.10.1-py3-none-any.whl (642 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 642.6/642.6 kB 66.2 MB/s eta 0:00:00
+Downloading joblib-1.5.3-py3-none-any.whl (309 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 309.1/309.1 kB 44.3 MB/s eta 0:00:00
+Downloading kiwisolver-1.5.0-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 80.4 MB/s eta 0:00:00
+Downloading lazy_loader-0.5-py3-none-any.whl (8.0 kB)
+Downloading msgpack-1.1.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (406 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 406.1/406.1 kB 51.9 MB/s eta 0:00:00
+Downloading numba-0.65.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (3.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 85.9 MB/s eta 0:00:00
+Downloading pandas-2.3.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 91.8 MB/s eta 0:00:00
+Downloading pooch-1.9.0-py3-none-any.whl (67 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.2/67.2 kB 10.9 MB/s eta 0:00:00
+Downloading pynndescent-0.6.0-py3-none-any.whl (73 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.5/73.5 kB 12.0 MB/s eta 0:00:00
+Downloading pyparsing-3.3.2-py3-none-any.whl (122 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 122.8/122.8 kB 20.6 MB/s eta 0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 35.6 MB/s eta 0:00:00
+Downloading regex-2026.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (793 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 793.6/793.6 kB 65.7 MB/s eta 0:00:00
+Downloading safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (507 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 507.2/507.2 kB 53.4 MB/s eta 0:00:00
+Downloading scikit_learn-1.7.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.7/9.7 MB 93.0 MB/s eta 0:00:00
+Downloading scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 37.7/37.7 MB 103.9 MB/s eta 0:00:00
+Downloading soundfile-0.13.1-py2.py3-none-manylinux_2_28_x86_64.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 77.4 MB/s eta 0:00:00
+Downloading soxr-1.0.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (242 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.3/242.3 kB 34.3 MB/s eta 0:00:00
+Downloading tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 85.6 MB/s eta 0:00:00
+Downloading typer-0.24.1-py3-none-any.whl (56 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.1/56.1 kB 8.0 MB/s eta 0:00:00
+Downloading annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Downloading click-8.3.2-py3-none-any.whl (108 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 108.4/108.4 kB 17.4 MB/s eta 0:00:00
+Downloading hf_xet-1.4.3-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.2/4.2 MB 86.4 MB/s eta 0:00:00
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.5/73.5 kB 11.1 MB/s eta 0:00:00
+Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.8/78.8 kB 14.4 MB/s eta 0:00:00
+Downloading llvmlite-0.47.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (56.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.3/56.3 MB 72.9 MB/s eta 0:00:00
+Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 310.7/310.7 kB 40.9 MB/s eta 0:00:00
+Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Downloading tzdata-2026.1-py2.py3-none-any.whl (348 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 349.0/349.0 kB 43.8 MB/s eta 0:00:00
+Downloading markdown_it_py-4.0.0-py3-none-any.whl (87 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.3/87.3 kB 14.8 MB/s eta 0:00:00
+Downloading anyio-4.13.0-py3-none-any.whl (114 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 114.4/114.4 kB 19.9 MB/s eta 0:00:00
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Installing collected packages: tzdata, threadpoolctl, soxr, shellingham, scipy, safetensors, regex, python-dateutil, pyparsing, msgpack, mdurl, llvmlite, lazy_loader, kiwisolver, joblib, hf-xet, h11, fonttools, cycler, contourpy, click, audioread, anyio, annotated-doc, soundfile, scikit-learn, pooch, pandas, numba, matplotlib, markdown-it-py, httpcore, seaborn, rich, pynndescent, librosa, httpx, umap-learn, typer, huggingface-hub, tokenizers, transformers
+  Attempting uninstall: click
+    Found existing installation: click 8.1.7
+    Uninstalling click-8.1.7:
+      Successfully uninstalled click-8.1.7
+Successfully installed annotated-doc-0.0.4 anyio-4.13.0 audioread-3.1.0 click-8.3.2 contourpy-1.3.2 cycler-0.12.1 fonttools-4.62.1 h11-0.16.0 hf-xet-1.4.3 httpcore-1.0.9 httpx-0.28.1 huggingface-hub-1.10.1 joblib-1.5.3 kiwisolver-1.5.0 lazy_loader-0.5 librosa-0.11.0 llvmlite-0.47.0 markdown-it-py-4.0.0 matplotlib-3.10.8 mdurl-0.1.2 msgpack-1.1.2 numba-0.65.0 pandas-2.3.3 pooch-1.9.0 pynndescent-0.6.0 pyparsing-3.3.2 python-dateutil-2.9.0.post0 regex-2026.4.4 rich-15.0.0 safetensors-0.7.0 scikit-learn-1.7.2 scipy-1.15.3 seaborn-0.13.2 shellingham-1.5.4 soundfile-0.13.1 soxr-1.0.0 threadpoolctl-3.6.0 tokenizers-0.22.2 transformers-5.5.3 typer-0.24.1 tzdata-2026.1 umap-learn-0.5.12
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+root@ae4a11c251db:/workspace# 

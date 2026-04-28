@@ -216,3 +216,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+data
+
+# Project-wide generated artifacts and local environments
+**/.venv/
+**/__pycache__/
+**/outputs/
+**/.codex/
+
+# Local datasets / archives
+**/data/
+**/*.zip
+audio_dataset
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.aac
