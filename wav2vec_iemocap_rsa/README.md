@@ -35,7 +35,7 @@ IEMOCAP の発話単位音声について、wav2vec2 の各層内部表現から
 ## セットアップ
 
 ```bash
-cd /home/takamichi-lab-pc07/research/wav2vec_iemocap_rsa
+cd /home/takamichi-lab-pc07/research/music_foundation_analysis/wav2vec_iemocap_rsa
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -49,7 +49,7 @@ python -m pip install -r requirements.txt
 全発話、全層、全体分析と話者別分析:
 
 ```bash
-cd /home/takamichi-lab-pc07/research
+cd /home/takamichi-lab-pc07/research/music_foundation_analysis
 wav2vec_rdm/.venv/bin/python wav2vec_iemocap_rsa/rsa_iemocap_layers.py
 ```
 
@@ -95,7 +95,7 @@ wav2vec_rdm/.venv/bin/python wav2vec_iemocap_rsa/rsa_iemocap_layers.py --max-utt
 
 ## 出力
 
-既定の出力先は `research/wav2vec_iemocap_rsa/outputs` です。
+既定の出力先は `research/music_foundation_analysis/wav2vec_iemocap_rsa/outputs` です。
 
 ```text
 outputs/

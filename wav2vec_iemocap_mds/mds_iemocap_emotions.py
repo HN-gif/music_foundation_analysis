@@ -33,8 +33,8 @@ from wav2vec_iemocap_rsa.rsa_iemocap_layers import (
 )
 
 
-DEFAULT_DATA_DIR = Path("/home/takamichi-lab-pc07/research/data/IEMOCAP_full_release")
-DEFAULT_OUTPUT_DIR = Path("/home/takamichi-lab-pc07/research/wav2vec_iemocap_mds/outputs")
+DEFAULT_DATA_DIR = PROJECT_ROOT / "data" / "IEMOCAP_full_release"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "wav2vec_iemocap_mds" / "outputs"
 DEFAULT_RANDOM_STATE = 42
 METHODS = ("A", "B", "C")
 GROUP_SCOPES = ("all", "genders", "speakers", "texts")

@@ -33,7 +33,7 @@ from audio_dataset import EMOTION_MAP, RAVDESSRecord, collect_ravdess_files
 
 
 DEFAULT_MODEL_NAME = "facebook/wav2vec2-base-960h"
-DEFAULT_OUTPUT_DIR = Path("/home/takamichi-lab-pc07/research/wav2vec_mds/outputs")
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "wav2vec_mds" / "outputs"
 TARGET_SAMPLE_RATE = 16_000
 DEFAULT_RANDOM_STATE = 42
 NEUTRAL_EMOTION_CODE = "01"
@@ -91,7 +91,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--data-dir",
         type=Path,
-        default=Path("/home/takamichi-lab-pc07/research/data"),
+        default=PROJECT_ROOT / "data",
         help="RAVDESS wav files are searched recursively under this directory.",
     )
     parser.add_argument(

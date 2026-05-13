@@ -1,6 +1,6 @@
 # HuBERT Internal Representation Extraction
 
-`research/data` 配下の音声を Hugging Face の HuBERT モデルへ入力し、内部表現を取り出して保存するためのスクリプトです。
+`research/music_foundation_analysis/data` 配下の音声を Hugging Face の HuBERT モデルへ入力し、内部表現を取り出して保存するためのスクリプトです。
 
 RAVDESS のファイル名解析とデータ選別ロジックは、`wav2vec_docker` の外に切り出した共有モジュール [audio_dataset/ravdess.py](/home/takamichi-lab-pc07/research/audio_dataset/ravdess.py) にまとめています。今後ほかの音声モデルでも同じ条件で入力データをそろえられます。
 
@@ -19,7 +19,7 @@ RAVDESS のファイル名解析とデータ選別ロジックは、`wav2vec_doc
 ## venv セットアップ
 
 ```bash
-cd /home/takamichi-lab-pc07/research/hubert_hugging
+cd /home/takamichi-lab-pc07/research/music_foundation_analysis/hubert_hugging
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -29,7 +29,7 @@ python -m pip install -r requirements.txt
 以後は、このディレクトリで作業する前に毎回次を実行してください。
 
 ```bash
-cd /home/takamichi-lab-pc07/research/hubert_hugging
+cd /home/takamichi-lab-pc07/research/music_foundation_analysis/hubert_hugging
 source .venv/bin/activate
 ```
 

@@ -75,7 +75,7 @@ Session1_F, Session1_M, ..., Session5_F, Session5_M
 全体 + 男女別、全層、A/B/C:
 
 ```bash
-cd /home/takamichi-lab-pc07/research
+cd /home/takamichi-lab-pc07/research/music_foundation_analysis
 wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py
 ```
 
@@ -120,7 +120,7 @@ wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
 
 ## 出力
 
-既定の出力先は `research/wav2vec_iemocap_mds/outputs` です。
+既定の出力先は `research/music_foundation_analysis/wav2vec_iemocap_mds/outputs` です。
 
 ```text
 outputs/

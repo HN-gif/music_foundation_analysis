@@ -33,8 +33,8 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 
-DEFAULT_DATA_DIR = Path("/home/takamichi-lab-pc07/research/data/IEMOCAP_full_release")
-DEFAULT_OUTPUT_DIR = Path("/home/takamichi-lab-pc07/research/wav2vec_iemocap_rsa/outputs")
+DEFAULT_DATA_DIR = PROJECT_ROOT / "data" / "IEMOCAP_full_release"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "wav2vec_iemocap_rsa" / "outputs"
 DEFAULT_MODEL_NAME = "facebook/wav2vec2-base-960h"
 TARGET_SAMPLE_RATE = 16_000
 DEFAULT_RANDOM_STATE = 42

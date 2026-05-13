@@ -16,6 +16,7 @@ from audio_dataset import collect_ravdess_files, parse_ravdess_path
 
 
 TARGET_SAMPLE_RATE = 16_000
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 @dataclass(frozen=True)
@@ -64,13 +65,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input-dir",
         type=Path,
-        default=Path("/home/takamichi-lab-pc07/research/data"),
+        default=PROJECT_ROOT / "data",
         help="Directory containing .wav files.",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("/home/takamichi-lab-pc07/research/hubert_hugging/outputs"),
+        default=PROJECT_ROOT / "hubert_hugging" / "outputs",
         help="Directory to store representation files.",
     )
     parser.add_argument(

@@ -29,7 +29,7 @@ RAVDESS の離散感情ラベル付き音声に対して、`facebook/wav2vec2-ba
 ## セットアップ
 
 ```bash
-cd /home/takamichi-lab-pc07/research/wav2vec_mds
+cd /home/takamichi-lab-pc07/research/music_foundation_analysis/wav2vec_mds
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -78,7 +78,7 @@ python mds_emotion_layers.py --max-files 40 --layers 0 6 12
 
 ## 出力
 
-既定の出力先は `research/wav2vec_mds/outputs` です。
+既定の出力先は `research/music_foundation_analysis/wav2vec_mds/outputs` です。
 
 ```text
 outputs/
