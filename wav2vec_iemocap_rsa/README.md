@@ -17,6 +17,7 @@ IEMOCAP の発話単位音声について、wav2vec2 の各層内部表現から
 - アノテーション: `Session*/dialog/EmoEvaluation/*.txt`
 - 対象: 発話単位
 - `emotion_label=xxx` は除外
+- 感情ラベルごとの発話数を数え、`100` を超えるラベルだけを解析対象にする
 - wav2vec 表現: 全 hidden states
 - 発話ベクトル: 時間方向 mean pooling
 - モデル距離: cosine distance

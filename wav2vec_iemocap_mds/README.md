@@ -11,6 +11,7 @@ RAVDESS 用の `wav2vec_mds` と同じ A/B/C 方式を、IEMOCAP の `ang`, `hap
 - アノテーション: `Session*/dialog/EmoEvaluation/*.txt`
 - `emotion_label=xxx` は既定で除外
 - `emotion_label=oth` は常に除外
+- 感情ラベルごとの発話数を数え、`100` を超えるラベルだけを解析対象にする
 - 各発話から wav2vec2 hidden states を取得
 - 発話ベクトルは時間方向 mean pooling
 - 距離は既定で cosine distance
@@ -113,6 +114,30 @@ wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
   --layers 0 6 12
 ```
 
+impro のみを使う:
+
+```bash
+wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
+  --dialog-types impro \
+  --layers 0 6 12
+```
+
+デバッグ用に感情ラベルをランダムにシャッフルして解析:
+
+```bash
+wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
+  --shuffle-emotion-labels \
+  --shuffle-label-seed 42
+```
+
+分布を保たず、各発話へ独立にランダムラベルを付与して解析:
+
+```bash
+wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
+  --randomize-emotion-labels \
+  --shuffle-label-seed 42
+```
+
 ノルム差だけを距離にする:
 
 ```bash
@@ -141,6 +166,10 @@ wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
 cd /home/takamichi-lab-pc07/research/music_foundation_analysis
 wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/plot_iemocap_norms.py
 ```
+
+ノルム分析側でも同じシャッフルオプションを受け付けます。主に `utterance_norms.csv` のデバッグ確認用です。
+
+ノルム分析側でも `--randomize-emotion-labels` を受け付けます。
 
 主な出力先は `research/music_foundation_analysis/wav2vec_iemocap_mds/norm_outputs` です。
 

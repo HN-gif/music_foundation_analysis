@@ -27,5 +27,8 @@ python3 -m venv .venv
   IEMOCAP の離散感情ラベルに対して A/B/C 方式の距離行列と MDS を作成
 - `iemocap_mds/plot_iemocap_norms.py`
   hidden state ベクトルの L2 norm を話者別・男女別・層別に可視化
+- `iemocap_rsa/rsa_iemocap_layers.py`
+  IEMOCAP の VAD 値を使って layer-wise RSA を実行
 
 詳細は [iemocap_mds/README.md](/home/takamichi-lab-pc07/research/music_foundation_analysis/emotion2vec/iemocap_mds/README.md) を参照してください。
+RSA については [iemocap_rsa/README.md](/home/takamichi-lab-pc07/research/music_foundation_analysis/emotion2vec/iemocap_rsa/README.md) を参照してください。

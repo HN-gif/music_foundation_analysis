@@ -38,6 +38,7 @@ DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "wav2vec_iemocap_rsa" / "outputs"
 DEFAULT_MODEL_NAME = "facebook/wav2vec2-base-960h"
 TARGET_SAMPLE_RATE = 16_000
 DEFAULT_RANDOM_STATE = 42
+DEFAULT_MIN_EMOTION_COUNT_EXCLUSIVE = 100
 ANNOTATION_PATTERN = re.compile(
     r"^\[(?P<start>[0-9.]+) - (?P<end>[0-9.]+)\]\s+"
     r"(?P<utterance_id>\S+)\s+"
@@ -300,6 +301,7 @@ def collect_iemocap_utterances(
     dialog_types: Optional[Sequence[str]],
     include_xxx: bool,
     max_utterances: Optional[int],
+    min_emotion_count_exclusive: Optional[int] = DEFAULT_MIN_EMOTION_COUNT_EXCLUSIVE,
 ) -> List[IemocapUtterance]:
     session_filter = normalize_session_filters(sessions)
     emotion_filter = set(emotion_labels) if emotion_labels else None
@@ -318,11 +320,28 @@ def collect_iemocap_utterances(
             if dialog_type_filter is not None and item.dialog_type not in dialog_type_filter:
                 continue
             utterances.append(item)
-            if max_utterances is not None and len(utterances) >= max_utterances:
-                return utterances
 
     if not utterances:
         raise RuntimeError("No IEMOCAP utterances matched the requested filters.")
+
+    if min_emotion_count_exclusive is not None:
+        label_counts: Dict[str, int] = {}
+        for item in utterances:
+            label_counts[item.emotion_label] = label_counts.get(item.emotion_label, 0) + 1
+        kept_labels = {
+            label
+            for label, count in label_counts.items()
+            if count > min_emotion_count_exclusive
+        }
+        utterances = [item for item in utterances if item.emotion_label in kept_labels]
+        if not utterances:
+            raise RuntimeError(
+                "No IEMOCAP utterances remained after keeping only emotion labels "
+                f"with more than {min_emotion_count_exclusive} samples."
+            )
+
+    if max_utterances is not None:
+        utterances = utterances[:max_utterances]
     return utterances
 
 

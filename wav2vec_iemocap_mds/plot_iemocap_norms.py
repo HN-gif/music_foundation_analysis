@@ -6,6 +6,7 @@ import csv
 import os
 import shutil
 import sys
+from dataclasses import replace
 from pathlib import Path
 from typing import Dict, List, Sequence
 
@@ -37,6 +38,19 @@ DEFAULT_DIALOG_TYPES = ("script",)
 DEFAULT_LAYERS = (0, 6, 12)
 DEFAULT_SPEAKER_LAYER = 6
 EXCLUDED_EMOTION_LABELS = {"oth"}
+DEFAULT_RANDOM_STATE = 42
+EMOTION_NAMES = {
+    "ang": "angry",
+    "hap": "happy",
+    "sad": "sad",
+    "neu": "neutral",
+    "fru": "frustrated",
+    "exc": "excited",
+    "fea": "fearful",
+    "sur": "surprised",
+    "dis": "disgusted",
+    "oth": "other",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -82,6 +96,26 @@ def parse_args() -> argparse.Namespace:
         help="Include utterances whose categorical emotion label is xxx. Default excludes them.",
     )
     parser.add_argument("--max-utterances", type=int, default=None)
+    parser.add_argument("--random-state", type=int, default=DEFAULT_RANDOM_STATE)
+    parser.add_argument(
+        "--shuffle-emotion-labels",
+        action="store_true",
+        help="Ignore dataset emotion labels and randomly permute labels across utterances for debugging.",
+    )
+    parser.add_argument(
+        "--shuffle-label-seed",
+        type=int,
+        default=None,
+        help="Random seed for --shuffle-emotion-labels. Defaults to --random-state.",
+    )
+    parser.add_argument(
+        "--randomize-emotion-labels",
+        action="store_true",
+        help=(
+            "Ignore dataset emotion labels and assign each utterance an independently sampled "
+            "random label from the available emotion label set. Label distribution is not preserved."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -133,6 +167,49 @@ def collect_filtered_utterances(args: argparse.Namespace) -> List[IemocapUtteran
     if not utterances:
         raise RuntimeError("No IEMOCAP utterances remained after filtering.")
     return utterances
+
+
+def maybe_shuffle_emotion_labels(
+    utterances: Sequence[IemocapUtterance],
+    enabled: bool,
+    seed: int,
+) -> List[IemocapUtterance]:
+    if not enabled:
+        return list(utterances)
+    rng = np.random.default_rng(seed)
+    shuffled_labels = [utterances[index].emotion_label for index in rng.permutation(len(utterances))]
+    shuffled = []
+    for utterance, shuffled_label in zip(utterances, shuffled_labels):
+        shuffled.append(
+            replace(
+                utterance,
+                emotion_label=shuffled_label,
+                emotion_name=EMOTION_NAMES.get(shuffled_label, utterance.emotion_name),
+            )
+        )
+    return shuffled
+
+
+def maybe_randomize_emotion_labels(
+    utterances: Sequence[IemocapUtterance],
+    enabled: bool,
+    seed: int,
+) -> List[IemocapUtterance]:
+    if not enabled:
+        return list(utterances)
+    rng = np.random.default_rng(seed)
+    available_labels = sorted({utterance.emotion_label for utterance in utterances})
+    randomized_labels = rng.choice(available_labels, size=len(utterances), replace=True)
+    randomized = []
+    for utterance, randomized_label in zip(utterances, randomized_labels):
+        randomized.append(
+            replace(
+                utterance,
+                emotion_label=str(randomized_label),
+                emotion_name=EMOTION_NAMES.get(str(randomized_label), utterance.emotion_name),
+            )
+        )
+    return randomized
 
 
 def build_norm_rows(
@@ -257,10 +334,24 @@ def plot_bar(
 def main() -> None:
     args = parse_args()
     clear_output_dir(args.output_dir)
+    shuffle_seed = args.random_state if args.shuffle_label_seed is None else args.shuffle_label_seed
+    if args.shuffle_emotion_labels and args.randomize_emotion_labels:
+        raise ValueError(
+            "--shuffle-emotion-labels and --randomize-emotion-labels cannot be used together."
+        )
 
     requested_layers = sorted(set(args.layers) | {args.speaker_layer})
     utterances = collect_filtered_utterances(args)
+    utterances = maybe_shuffle_emotion_labels(utterances, args.shuffle_emotion_labels, shuffle_seed)
+    utterances = maybe_randomize_emotion_labels(utterances, args.randomize_emotion_labels, shuffle_seed)
     print(f"Collected {len(utterances)} IEMOCAP utterances")
+    if args.shuffle_emotion_labels:
+        print(f"Emotion labels were shuffled across utterances with seed={shuffle_seed}")
+    if args.randomize_emotion_labels:
+        print(
+            "Emotion labels were independently randomized across utterances "
+            f"with seed={shuffle_seed}"
+        )
 
     norm_rows = build_norm_rows(utterances, args.model_name, args.device, requested_layers)
     available_layers = sorted({int(row["layer"]) for row in norm_rows})

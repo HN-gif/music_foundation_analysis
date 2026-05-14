@@ -27,7 +27,11 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from emotion2vec.emotion2vec import DEFAULT_MODEL_NAME, extract_layer_embeddings, validate_layers
-from wav2vec_iemocap_rsa.rsa_iemocap_layers import IemocapUtterance, collect_iemocap_utterances
+from wav2vec_iemocap_rsa.rsa_iemocap_layers import (
+    DEFAULT_MIN_EMOTION_COUNT_EXCLUSIVE,
+    IemocapUtterance,
+    collect_iemocap_utterances,
+)
 
 
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data" / "IEMOCAP_full_release"
@@ -596,7 +600,15 @@ def main() -> None:
     args = parse_args()
     clear_output_dir(args.output_dir)
     shuffle_seed = args.random_state if args.shuffle_label_seed is None else args.shuffle_label_seed
-    utterances = collect_iemocap_utterances(args.data_dir, args.sessions, args.emotion_labels, args.dialog_types, args.include_xxx, args.max_utterances)
+    utterances = collect_iemocap_utterances(
+        args.data_dir,
+        args.sessions,
+        args.emotion_labels,
+        args.dialog_types,
+        args.include_xxx,
+        args.max_utterances,
+        min_emotion_count_exclusive=DEFAULT_MIN_EMOTION_COUNT_EXCLUSIVE,
+    )
     utterances = [utterance for utterance in utterances if utterance.emotion_label not in EXCLUDED_EMOTION_LABELS]
     if not utterances:
         raise RuntimeError("No IEMOCAP utterances remained after excluding the 'oth' emotion label.")
