@@ -11,9 +11,13 @@ RAVDESS 用の `wav2vec_mds` と同じ A/B/C 方式を、IEMOCAP の `ang`, `hap
 - アノテーション: `Session*/dialog/EmoEvaluation/*.txt`
 - `emotion_label=xxx` は既定で除外
 - `emotion_label=oth` は常に除外
-- 各発話から wav2vec2 全層 hidden states を取得
+- 各発話から wav2vec2 hidden states を取得
 - 発話ベクトルは時間方向 mean pooling
 - 距離は既定で cosine distance
+- `--distance-metric norm-only` ではベクトル方向を無視し、L2 ノルムの差 `| ||x||_2 - ||y||_2 |` を距離にする
+- 既定では `--layers 0 6 12` の 3 層だけを解析する
+- 既定では `--dialog-types script` に限定する
+- 実行開始時に出力先 `outputs/` の中身を削除し、最新実行の結果だけを残す
 - MDS の `random_state` は既定で `42`
 - MDS 次元数は `--mds-components` で変更可能。既定は 2 次元
 
@@ -72,17 +76,17 @@ Session1_F, Session1_M, ..., Session5_F, Session5_M
 
 ## 実行例
 
-全体 + 男女別、全層、A/B/C:
+既定実行。script のみ、層 0/6/12、全体 + 男女別、A/B/C:
 
 ```bash
 cd /home/takamichi-lab-pc07/research/music_foundation_analysis
 wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py
 ```
 
-層を限定:
+解析層を変更:
 
 ```bash
-wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py --layers 0 6 12
+wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py --layers 0 3 6 9 12
 ```
 
 3 次元 MDS:
@@ -105,8 +109,17 @@ improvisation / script を限定:
 
 ```bash
 wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
-  --dialog-types script \
+  --dialog-types impro script \
   --layers 0 6 12
+```
+
+ノルム差だけを距離にする:
+
+```bash
+wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
+  --distance-metric norm-only \
+  --layers 6 \
+  --dialog-types script
 ```
 
 デバッグ用:
@@ -118,9 +131,36 @@ wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/mds_iemocap_emotions.py \
   --skip-groups-with-fewer-emotions 2
 ```
 
+## ノルム分析
+
+話者性に応じた wav2vec2 ベクトルの L2 ノルム差を見る場合は、別スクリプト `plot_iemocap_norms.py` を使います。
+
+既定では `script` 発話だけを使い、話者別・男女別の棒グラフは 6 層目、層別の棒グラフは 0 / 6 / 12 層で作成します。実行開始時に `norm_outputs/` の中身を削除し、最新実行の結果だけを残します。
+
+```bash
+cd /home/takamichi-lab-pc07/research/music_foundation_analysis
+wav2vec_rdm/.venv/bin/python wav2vec_iemocap_mds/plot_iemocap_norms.py
+```
+
+主な出力先は `research/music_foundation_analysis/wav2vec_iemocap_mds/norm_outputs` です。
+
+```text
+norm_outputs/
+  utterance_norms.csv
+  speaker_mean_norms_layer_06.csv
+  speaker_mean_norms_layer_06.png
+  gender_mean_norms_layer_06.csv
+  gender_mean_norms_layer_06.png
+  layer_mean_norms.csv
+  layer_mean_norms.png
+```
+
+`utterance_norms.csv` には発話ごとのノルム、`speaker_mean_norms_layer_06.csv` には各話者の平均ノルム、`gender_mean_norms_layer_06.csv` には男女別の平均ノルム、`layer_mean_norms.csv` には話者を区別しない層別平均ノルムを保存します。
+
 ## 出力
 
 既定の出力先は `research/music_foundation_analysis/wav2vec_iemocap_mds/outputs` です。
+スクリプトは実行開始時にこの出力先の中身を削除してから新しい結果を書き出します。
 
 ```text
 outputs/

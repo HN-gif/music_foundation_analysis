@@ -7,6 +7,7 @@ RAVDESS の離散感情ラベル付き音声に対して、`facebook/wav2vec2-ba
 - 各発話から全層 hidden states を取得
 - 各層の発話ベクトルは時間方向 mean pooling
 - 距離は既定で cosine distance
+- `--distance-metric norm-only` ではベクトル方向を無視し、L2 ノルムの差 `| ||x||_2 - ||y||_2 |` を距離にする
 - `speaker_id` と `emotion_label` は必須メタデータとして扱う
 - `text_id` は RAVDESS の `statement_code` として保持
 - neutral (`emotion_code=01`) は既定で除外
@@ -68,6 +69,12 @@ C 方式の組み合わせ距離をサンプリング:
 
 ```bash
 python mds_emotion_layers.py --pair-sample-size 5000
+```
+
+ノルム差だけを距離にする:
+
+```bash
+python mds_emotion_layers.py --distance-metric norm-only
 ```
 
 デバッグ用にファイル数を限定:

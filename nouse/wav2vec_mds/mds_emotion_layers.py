@@ -113,7 +113,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--distance-metric",
         default="cosine",
-        help="Distance metric passed to sklearn.metrics.pairwise_distances.",
+        help=(
+            "Distance metric passed to sklearn.metrics.pairwise_distances. "
+            "Use norm-only to compare only L2 norm magnitudes."
+        ),
     )
     parser.add_argument(
         "--methods",
@@ -361,8 +364,26 @@ def ordered_emotion_labels(embeddings: Sequence[UtteranceEmbedding]) -> List[str
     return sorted(code_by_label, key=lambda label: code_by_label[label])
 
 
+def vector_distances(
+    left_vectors: np.ndarray,
+    right_vectors: Optional[np.ndarray],
+    metric: str,
+) -> np.ndarray:
+    if metric == "norm-only":
+        left_norms = np.linalg.norm(left_vectors, axis=1)
+        if right_vectors is None:
+            right_norms = left_norms
+        else:
+            right_norms = np.linalg.norm(right_vectors, axis=1)
+        return np.abs(left_norms[:, np.newaxis] - right_norms[np.newaxis, :])
+
+    if right_vectors is None:
+        return pairwise_distances(left_vectors, metric=metric)
+    return pairwise_distances(left_vectors, right_vectors, metric=metric)
+
+
 def build_distance_matrix(vectors: np.ndarray, labels: Sequence[str], metric: str) -> DistanceMatrix:
-    matrix = pairwise_distances(vectors, metric=metric)
+    matrix = vector_distances(vectors, None, metric)
     return DistanceMatrix(labels=tuple(labels), values=matrix)
 
 
@@ -422,15 +443,15 @@ def sampled_mean_distance(
         if pair_count == 0:
             return np.nan, 0
         if pair_sample_size is None or pair_count <= pair_sample_size:
-            distances = pairwise_distances(left_vectors, right_vectors, metric=metric)
+            distances = vector_distances(left_vectors, right_vectors, metric)
             return float(distances.mean()), pair_count
         left_indices = rng.integers(0, len(left_vectors), size=pair_sample_size)
         right_indices = rng.integers(0, len(right_vectors), size=pair_sample_size)
 
-    sampled_distances = pairwise_distances(
+    sampled_distances = vector_distances(
         left_vectors[left_indices],
         right_vectors[right_indices],
-        metric=metric,
+        metric,
     )
     return float(np.diag(sampled_distances).mean()), int(pair_sample_size)
 
